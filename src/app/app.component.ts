@@ -124,17 +124,16 @@ export class AppComponent implements OnInit, OnDestroy {
   return year+"-"+month+"-"+day
   }
   drawBarChart(context){
-
     for(let player=0; player<30; player++) {
       if (this.johnPoints[player]==null){
         this.johnPoints[player]=0 }
+ 
       context.fillStyle = "#36b5d8";
       let playerInfo = this.johnPoints;
       //I add -60 to fit perfectly on the first horizontal line
       context.fillRect(25 + player*50,this.chartMetaInfo.chartHeight-this.johnPoints[player]/10*2-110, 30, (this.johnPoints[player]/10)*2);
-      this.addColumnName(context,this.formatDate(this.dates[player]), 30 +player*50,this.chartMetaInfo.chartHeight-85);
-
-    }
+     this.addColumnName(context,this.formatDate(this.dates[player]), 30 +player*50,this.chartMetaInfo.chartHeight-85);}
+    
 
     for(let player=0; player<30; player++) {
       if (this.johnPoints[player]==null){
@@ -147,6 +146,9 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
    handleMouseMove(e:any, context) {
+    var ind=0
+
+
     e.preventDefault();
     e.stopPropagation();
     var offsetX = this.left;
@@ -154,16 +156,19 @@ var offsetY = this.top;
     var mouseX =  Math.floor(e.clientX - offsetX);
     var mouseY = Math.floor(e.clientY - offsetY);
 for (let i=0 ; i<30; i++){
+      if(this.larryPoints[i]-this.johnPoints[i]<30 )
+    {ind=-10
+      console.log("first")
+    }
   if((mouseX>(50*(i))+25 )&&( mouseX<((i+1)*50)+25) &&(mouseY>this.chartMetaInfo.chartHeight-this.johnPoints[i]/10*2-85))
 {
-  this.addColumnHead(context,this.johnPoints[i],5+ i*50,this.chartMetaInfo.chartHeight-this.johnPoints[i]/10*2-115, "cyan")
+  this.addColumnHead(context,this.johnPoints[i],30+ i*50,this.chartMetaInfo.chartHeight-this.johnPoints[i]/10*2-105-ind, "cyan")
 
 }
 if((mouseX>(50*(i))+30 )&&( mouseX<((i+1)*50)+30) &&(mouseY>this.chartMetaInfo.chartHeight-this.johnPoints[i]/10*2-85))
-{ this.addColumnHead(context,this.larryPoints[i],30 + i*50,this.chartMetaInfo.chartHeight-this.larryPoints[i]/10*2-115, "white")
+{ this.addColumnHead(context,this.larryPoints[i],30 + i*50,this.chartMetaInfo.chartHeight-this.larryPoints[i]/10*2-130, "white")
 }
-else {this.removeColumnName(context,this.johnPoints[i],5+ i*50,this.chartMetaInfo.chartHeight-this.johnPoints[i]/10*2-115, "cyan")
-this.removeColumnName(context,this.larryPoints[i],30 + i*50,this.chartMetaInfo.chartHeight-this.larryPoints[i]/10*2-115, "white")}}
+}
     // var dx = mouseX - circle.cx;
     // var dy = mouseY - circle.cy;
     // var isInside = dx * dx + dy * dy <= circle.radius * circle.radius;
