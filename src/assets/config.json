@@ -1,0 +1,13 @@
+{
+  "chartWidth": 1280,
+  "chartHeight": 570,
+  "titleColor": "white",
+  "titleFont": "20px sans-serif",
+  "columnTitleColor": "white",
+  "columnFont": "15px sans-serif",
+  "footerTitle": "Scores",
+  "footerColor": "#c1d0cd",
+  "footerFont": "15px sans-serif",
+  "leftaxisColor": "#c1d0cd",
+  "leftaxisFont": "15px sans-serif"
+}

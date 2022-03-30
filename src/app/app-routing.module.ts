@@ -5,14 +5,12 @@ import { AppComponent } from './app.component';
 import { BarComponent } from './bar/bar.component';
 const routes: Routes = [
   { path: ':name', component: BarComponent },
-  { path: '**', redirectTo: "/" },
-
+  { path: '', component: BarComponent, pathMatch: 'full' },
+  { path: '**', redirectTo: '/' },
 ];
 
-
-
 @NgModule({
-  imports: [RouterModule.forRoot(routes),],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
